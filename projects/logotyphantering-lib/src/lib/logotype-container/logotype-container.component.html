@@ -1,0 +1,55 @@
+<div ngClass="logo-container">
+
+  <div *ngIf="loading" ngClass="loading-container empty">
+    <div ngClass="centered-content">
+      <div ngClass="loading-wrapper">
+        <div ngClass="loading-indicator li-sm" aria-live="assertive" aria-label="Vänta, informationen laddas...">
+        </div>
+      </div>
+      <span ngClass="loading-text">Laddar...</span>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && (showError || noWorkplaceFound)" ngClass="loading-container empty error-container">
+    <div ngClass="row">
+      <div ngClass="col-4" style="padding-right: 5px; text-align: right;">
+        <span ngClass="i-af-exclamation-circle" aria-hidden="true"></span>
+      </div>
+      <div ngClass="col" style="padding-left: 5px;">
+        <span ngClass="error-text">Just nu kan vi inte visa logotypen på grund av ett tekniskt fel.</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!logotype?.image && editMode && !loading && !noWorkplaceFound && !showError">
+    <div ngClass="empty">
+      <div ngClass="centered-content">
+        <span ngClass="i-image no-logo"></span>
+        <a ngClass="btn btn-primary"
+           (click)="onButtonClick()"
+           (keyup.enter)="onButtonClick()"
+           href="javascript:;">
+          <span ngClass="i-plus plus-icon" aria-hidden="true"></span>
+           Lägg till logotyp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && logotype?.image">
+    <div [ngClass]="{'logo': true,
+                     'edit-mode':editMode}"
+         (click)="onButtonClick()">
+      <img ngClass="logotyp" src="{{logotype?.image}}" alt="logotyp"/>
+    </div>
+    <a *ngIf="editMode" ngClass="edit-caption" (click)="onButtonClick()" href="javascript:;">
+      <span ngClass="i-af-pen icon"></span> <span ngClass="text">Redigera</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+

@@ -1,0 +1,53 @@
+@import url("https://www.arbetsformedlingen.se/webdav/files/system/css/af-b4.css");
+
+
+.outer-container {
+  background-color: #00005a;
+  position: fixed;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.inner-container {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  top: 200px;
+  left: 200px;
+  width: 80%;
+  background-color: white;
+  padding: 30px;
+  padding-left: 60px;
+  display: block;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 30px;
+}
+
+
+@media only screen and (max-width: 1200px) {
+  .inner-container {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    top: 30px;
+    left: 20px;
+    width: 90%;
+    padding: 30px;
+    padding-left: 30px;
+  }
+
+  .content {
+    position: relative;
+    margin: 0;
+  }
+}

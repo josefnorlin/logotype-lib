@@ -1,0 +1,20 @@
+<div [ngClass]="{'af-alert': true,
+     'af-alert--success': success,
+     'af-alert--danger': danger,
+     'af-alert--warning': warning,
+     'af-alert--info': info,
+     'af-alert--dismissible': true }"
+     role="alert">
+  <button type="button" ngClass="af-alert__close" data-dismiss="alert" aria-label="Stäng meddelandet" (click)="onClose()">
+    <span aria-hidden="true">×</span>
+  </button>
+  <div ngClass="af-alert__icon">
+    <i ngClass="i-af-check-circle-reg" *ngIf="success"></i>
+    <i ngClass="i-af-exclamation-circle" *ngIf="danger"></i>
+    <i ngClass="i-af-exclamation-triangle" *ngIf="warning"></i>
+    <i ngClass="i-af-info-circle" *ngIf="info"></i>
+  </div>
+  <div ngClass="af-alert__message">
+    <ng-content></ng-content>
+  </div>
+</div>

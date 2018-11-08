@@ -1,0 +1,151 @@
+@import "../../../../../src/variables.scss";
+
+/* You can add global styles to this file, and also import other style files */
+@import "node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+
+.logo-container-wrapper {
+  position: relative;
+}
+
+.logo {
+  position: relative;
+  text-align: right;
+  cursor: default;
+  display: block;
+  pointer-events: none;
+
+  img {
+    max-height: 150px;
+    max-width: 150px;
+  }
+}
+
+.edit-mode {
+  cursor: pointer;
+  pointer-events: auto;
+
+    img {
+    opacity: 1;
+    transition: all 0.6s ease;
+  }
+}
+
+.edit-mode:hover {
+  img {
+    opacity: 0.5;
+  }
+}
+
+.centered-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+.empty {
+    border: 2px solid $gray-30;
+    background-color: white;
+    border-bottom: 2px solid #b9bbbe;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    height: 200px;
+    width: 200px;
+
+    .plus-icon {
+      margin-right: 5px;
+    }
+}
+
+.error-container {
+  padding-top: 20px;
+  border-color: $red;
+  background-color: $gray-10;
+
+  .i-af-exclamation-circle {
+    color: $red;
+    font-size: 20px;
+  }
+  .error-text {
+    text-align: left;
+    display: inline-block;
+  }
+}
+
+.logo-container {
+  max-width: 200px;
+  max-height: 200px;
+  position: relative;
+  text-align: center;
+  display: inline-block;
+}
+
+.loading-container {
+  pointer-events: none;
+  cursor: default;
+
+  .loading-text {
+    text-align: center;
+    font-size: 15px;
+    color: $primary;
+    font-weight: 600;
+  }
+}
+
+:host ::ng-deep button.btn.btn-primary.button-add {
+  margin: 0 !important;
+}
+
+.no-logo {
+  color: $gray-30;
+  font-size: 90px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.redigera-logotyp-link {
+  display: block;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+.i-af-pen {
+  margin-right: 5px;
+}
+
+.edit-caption {
+  display: block;
+  text-align: right;
+}
+
+
+.error-icon {
+  font-size: 48px;
+  color: $red;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .empty-logotype-conatiner {
+    transform: scale(0.7);
+    -ms-transform: scale(0.7); /* IE 9 */
+    -webkit-transform: scale(0.7); /* Safari and Chrome */
+    -o-transform: scale(0.7); /* Opera */
+    -moz-transform: scale(0.7); /* Firefox */
+    transform-origin: top right;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .empty-logotype-conatiner {
+    transform-origin: top left;
+    float: left;
+  }
+}
+
+@media only screen and (max-width: 433px) {
+  .logotyp-container {
+    position: relative;
+  }
+}

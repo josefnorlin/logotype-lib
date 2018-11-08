@@ -1,0 +1,81 @@
+<div mat-dialog-title>
+  <h2>Redigera logotyp</h2>
+  <button type="button" ngClass="af-alert__close close-icon" aria-label="Stäng meddelandet" (click)="onNoClick()">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div mat-dialog-content>
+  <div ngClass="lib-content-wrapper">
+    <div ngClass="centered-content">
+      <div ngClass="logo-container">
+
+        <div ngClass="no-logo loading-container" *ngIf="loading">
+          <svg viewBox="0 0 300 100" preserveAspectRatio="none" ngClass="svg">
+            <path d="M0,0 300,0 300,100 0,100z" vector-effect="non-scaling-stroke"/>
+          </svg>
+          <div ngClass="centered-content">
+            <div ngClass="loading-wrapper">
+              <div ngClass="loading-indicator li-sm" aria-live="assertive" aria-label="Vänta, informationen laddas...">
+              </div>
+            </div>
+            <span ngClass="loading-text">Laddar upp...</span>
+          </div>
+        </div>
+
+        <div ngClass="no-logo" *ngIf="!loading && !selectedLogotype">
+          <file-drop (onFileDrop)="handleDropFile($event)" customstyle="filedrop" style="width: 100%; height: 100%;">
+            <svg viewBox="0 0 300 100" preserveAspectRatio="none">
+              <path d="M0,0 300,0 300,100 0,100z" vector-effect="non-scaling-stroke"/>
+            </svg>
+
+            <label for="file-upload">
+              <span ngClass="centered-content">
+                <span ngClass="i-download-solid icon"></span> <span ngClass="text"> Ladda upp </span>
+              </span>
+            </label>
+          </file-drop>
+        </div>
+        <div *ngIf="!loading && selectedLogotype">
+          <file-drop (onFileDrop)="handleDropFile($event)" customstyle="filedrop">
+            <label *ngIf="!loading && selectedLogotype" for="file-upload" ngClass="logo edit-mode">
+              <img src="{{selectedLogotype}}" alt="logo"/>
+            </label>
+          </file-drop>
+        </div>
+
+        <input type="file"
+               accept="image/gif, image/jpg, image/jpeg, image/png"
+               id="file-upload"
+               (change)="handleInputFile($event.target.files)">
+
+      </div>
+    </div>
+    <div ngClass="alerts" *ngIf="!loading">
+      <enl-af-alert [danger]="true" (close)="fileIsTooBig = false" *ngIf="fileIsTooBig">
+        <p> Din bild kunde inte laddas upp. Den fil du försökte ladda upp har fel storlek. <span ngClass="desktop-text">Filens storlek får inte vara större än 3000 x 3000 pixlar och maximalt vara 500 KB stor. </span> </p>
+      </enl-af-alert>
+
+      <enl-af-alert [danger]="true" (close)="wrongFileFormat = false" *ngIf="wrongFileFormat">
+        <p>Din bild kunde inte laddas upp. <span ngClass="desktop-text">Den fil du försökte ladda upp har fel format.</span> Det tillåtna filtyperna är GIF, JPG och PNG.</p>
+      </enl-af-alert>
+
+      <enl-af-alert [danger]="true" (close)="technicalProblem = false" *ngIf="technicalProblem">
+        <h2>Tekniskt fel!</h2>
+        <p>På grund av ett tekniskt fel kunde din bild inte sparas. <span ngClass="desktop-text">Var vänlig försök igen om en liten stund eller kontakta teknisk support om problemet kvarstår.</span></p>
+        <a ngClass="link" target="_blank" href="https://www.arbetsformedlingen.se/Globalmeny/Kontakt/Teknisk-support.html">Kontakta teknisk support</a>
+      </enl-af-alert>
+    </div>
+
+  </div>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button ngClass="btn btn-secondary" [disabled]="!selectedLogotype || !logotype?.referensId" type="button" (click)="onDeleteLogo()">Ta bort</button>
+  <span ngClass="spacer"></span>
+  <button mat-button cdkFocusInitial ngClass="btn btn-primary" [disabled]="!newLogotypeSelected" type="button" (click)="onSaveLogo()">Spara</button>
+  <label for="file-upload" mat-button [ngClass]="{'btn': true,
+                                                  'btn-secondary': true,
+                                                  'label-disabled': !selectedLogotype}">
+    Byt bild
+  </label>
+</div>
